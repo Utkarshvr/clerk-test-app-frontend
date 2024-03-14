@@ -21,7 +21,7 @@ export default function App() {
         axiosInstance.defaults.headers.common["Authorization"] = token;
       })();
     }
-  }, [isSignedIn]);
+  }, [isSignedIn, getToken]);
 
   return (
     <header>

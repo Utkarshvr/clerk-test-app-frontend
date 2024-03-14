@@ -44,9 +44,10 @@ export default function PrivateInfo() {
       const { data } = await axiosInstance.get(
         "/private-resources/clerk-profile"
       );
+      console.log({ IN_FUNC_DATA: data });
       setClerkProfile(data.user);
     } catch (error) {
-      console.log(error);
+      console.log({ IN_FUNCTION_ERROR: error });
     }
   };
 
@@ -55,9 +56,10 @@ export default function PrivateInfo() {
       const { data } = await axiosInstance.get(
         "/private-resources/mongodb-profile"
       );
+      console.log({ IN_FUNC_DATA: data });
       setMongoProfile(data.user);
     } catch (error) {
-      console.log(error);
+      console.log({ IN_FUNCTION_ERROR: error });
     }
   };
 
