@@ -15,7 +15,7 @@ export default function Docs() {
 
   const loadDocs = async () => {
     try {
-      const { data } = await axiosInstance.get("/docs");
+      const { data } = await axiosInstance.get("/docs-beta");
       setDocs(data.docs);
     } catch (error) {
       console.log(error);
@@ -24,7 +24,7 @@ export default function Docs() {
 
   const loadAllDocs = async () => {
     try {
-      const { data } = await axiosInstance.get("/docs/all");
+      const { data } = await axiosInstance.get("/docs-beta/all");
       setAlldocs(data.docs);
     } catch (error) {
       console.log(error);
