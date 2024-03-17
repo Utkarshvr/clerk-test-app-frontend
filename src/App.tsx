@@ -2,27 +2,13 @@ import {
   SignedIn,
   SignedOut,
   SignInButton,
-  useAuth,
   UserButton,
-  useUser,
 } from "@clerk/clerk-react";
-import { useEffect } from "react";
-import axiosInstance from "./utils/axiosInstance";
 import PrivateInfo from "./components/PrivateInfo";
+import Docs from "./components/Docs";
 
 export default function App() {
-  const { getToken } = useAuth();
-  const { isSignedIn } = useUser();
-
-  useEffect(() => {
-    if (isSignedIn) {
-      (async () => {
-        const token = await getToken();
-        axiosInstance.defaults.headers.common["Authorization"] = token;
-      })();
-    }
-  }, [isSignedIn, getToken]);
-
+  console.log("APP RENDERED");
   return (
     <header>
       <SignedOut>
@@ -31,6 +17,7 @@ export default function App() {
       <SignedIn>
         <UserButton />
         <PrivateInfo />
+        <Docs />
       </SignedIn>
     </header>
   );

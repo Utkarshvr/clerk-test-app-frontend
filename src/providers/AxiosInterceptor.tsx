@@ -16,13 +16,13 @@ const AxiosInterceptor = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const fullfilledInterceptor = (response: AxiosResponse) => {
-      console.log({ INTERCEPTOR_RES: response });
+      // console.log({ INTERCEPTOR_RES: response });
       return response;
     };
 
     const errorInterceptor = async (error: AxiosError) => {
       const originalRequest = error.config as ExtendedAxiosRequestConfig;
-      console.log({ AXIOS_ERROR: error });
+      // console.log({ AXIOS_ERROR: error });
       // If the error is due to an expired token
       if (
         originalRequest &&
