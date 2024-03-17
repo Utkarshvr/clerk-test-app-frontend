@@ -9,8 +9,8 @@ export default function AuthWrapper({
 }) {
   const { getToken } = useAuth();
   const { isSignedIn, isLoaded } = useUser();
-  const [isTokenSet, setIsTokenSet] = useState(false);
-  console.log({ isSignedIn, isLoaded, isTokenSet });
+  const [triedToSetToken, setTriedToSetToken] = useState(false);
+  console.log({ isSignedIn, isLoaded, triedToSetToken });
 
   useEffect(() => {
     if (isLoaded && isSignedIn) {
@@ -18,14 +18,15 @@ export default function AuthWrapper({
         const token = await getToken();
         console.log("🪙🪙Adding Token🪙🪙");
         axiosInstance.defaults.headers.common["Authorization"] = token;
-        setIsTokenSet(true);
+        setTriedToSetToken(true);
       })();
     }
+    if (isLoaded && isSignedIn === false) return setTriedToSetToken(true);
   }, [isSignedIn, getToken, isLoaded]);
 
-  if (!isLoaded && !isTokenSet) return null;
+  if (!isLoaded && !triedToSetToken) return null;
 
-  if (isLoaded && isTokenSet) {
+  if (isLoaded && triedToSetToken) {
     console.log("Children will be returned now");
     return <>{children}</>;
   }
